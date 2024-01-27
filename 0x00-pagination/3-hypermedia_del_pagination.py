@@ -4,7 +4,6 @@ Deletion-resilient hypermedia pagination
 """
 
 import csv
-import math
 from typing import Dict, List, Optional
 
 
@@ -41,7 +40,13 @@ class Server:
 
     def get_hyper_index(self, index: Optional[int] = None,
                         page_size: int = 10) -> Dict:
-        """Get hypermedia by seek pagination"""
+        """Get hypermedia by seek pagination
+        Args:
+            index (int): the starting index
+            page (int): page size
+        Return:
+            A dict
+        """
         ds = self.indexed_dataset()
         dl = len(ds)
         index = index if index else 0
