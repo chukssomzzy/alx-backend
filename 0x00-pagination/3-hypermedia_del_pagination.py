@@ -4,6 +4,7 @@ Deletion-resilient hypermedia pagination
 """
 
 import csv
+import math
 from typing import Dict, List, Optional
 
 
@@ -51,6 +52,8 @@ class Server:
         dl = len(ds)
         index = index if index else 0
         assert type(page_size) is int and type(index) is int
+        index = math.floor(index)
+        page_size = math.floor(page_size)
         assert index >= 0 and page_size > 0
         assert index + (page_size) <= dl
 
