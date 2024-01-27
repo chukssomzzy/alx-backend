@@ -37,7 +37,7 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         assert page > 0, page_size > 0
         i, j = index_range(page, page_size)
-
+        print(self.dataset())
         if j < len(self.dataset()):
             return self.dataset()[i:j]
         return []
