@@ -38,6 +38,10 @@ def get_locale() -> Union[str, None]:
     locale = request.args.get("locale")
     if locale in app.config["LANGUAGES"]:
         return locale
+    elif g.user:
+        locale = g.user["locale"]
+        if locale in app.config["LANGUAGES"]:
+            return g.user["locale"]
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
@@ -54,7 +58,6 @@ def before_request() -> Union[Dict, None]:
 @app.route('/', strict_slashes=False)
 def home() -> str:
     """Route to home"""
-    print(g.user)
     return render_template('5-index.html')
 
 
