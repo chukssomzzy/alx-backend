@@ -33,7 +33,7 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> Union[str, None]:
     """Determine language from request"""
     locale = request.args.get("locale")
     if locale in app.config["LANGUAGES"]:
@@ -42,7 +42,7 @@ def get_locale():
 
 
 @app.before_request
-def before_request():
+def before_request() -> Union[Dict, None]:
     """logins a users"""
     user = get_user()
     if user:
