@@ -25,7 +25,8 @@ def get_locale():
 @app.route('/', strict_slashes=False)
 def home() -> str:
     """Route to home"""
-    return render_template('2-index.html')
+    print(request.accept_languages)
+    return render_template('3-index.html')
 
 
 if __name__ == "__main__":
