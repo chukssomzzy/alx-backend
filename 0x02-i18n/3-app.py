@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Internalization enable flask app"""
 from flask import Flask, render_template, request
-from flask_babel import Babel
+from flask_babel import Babel, refresh
 
 
 class Config(object):
@@ -19,6 +19,9 @@ babel = Babel(app)
 @babel.localeselector
 def get_locale():
     """Determine language from request"""
+    locale = request.args.get("locale")
+    if locale in app.config["LANGUAGES"]:
+        return locale
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 

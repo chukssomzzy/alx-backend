@@ -2,5 +2,7 @@
   "pythonVersion": "3.10",
   "executionEnvironment": [
     {"root": "src"}
-  ]
+  ],
+  "venv": "venv",
+  "venvPath": "."
 } 
