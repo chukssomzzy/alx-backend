@@ -47,12 +47,14 @@ def before_request() -> Union[Dict, None]:
     user = get_user()
     if user:
         g.user = user
-    g.user = None
+    else:
+        g.user = None
 
 
 @app.route('/', strict_slashes=False)
 def home() -> str:
     """Route to home"""
+    print(g.user)
     return render_template('5-index.html')
 
 
