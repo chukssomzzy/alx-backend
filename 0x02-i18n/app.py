@@ -5,6 +5,7 @@ from typing import Dict, Union
 import pytz
 from flask import Flask, g, render_template, request
 from flask_babel import Babel
+from datetime import datetime
 
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
@@ -73,7 +74,7 @@ def before_request() -> Union[Dict, None]:
 @app.route('/', strict_slashes=False)
 def home() -> str:
     """Route to home"""
-    return render_template('5-index.html')
+    return render_template('index.html', current_time=datetime.now())
 
 
 if __name__ == "__main__":
