@@ -56,7 +56,7 @@ def get_timezone() -> Union[str, None]:
         if timezone:
             return timezone
         elif g.user:
-            return pytz.timezone(g.user.timezone).zone
+            return pytz.timezone(g.user["timezone"]).zone
     except pytz.exceptions.UnknownTimeZoneError:
         return pytz.utc.zone
 
