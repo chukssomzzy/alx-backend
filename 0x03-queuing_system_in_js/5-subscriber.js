@@ -2,8 +2,20 @@
 
 import { createClient } from 'redis';
 
-const client = createClient()
+const subscriber = createClient();
 
-client
+subscriber
   .on('error', (err) => console.log(`Redis client not connected to the server: ${err}`))
   .on('connect', () => console.log('Redis client connected to the server'));
+
+subscriber
+  .SUBSCRIBE('holberton school channel')
+
+subscriber
+  .on('message', (channel, message)=> {
+    if (message === 'KILL_SERVER') {
+      subscriber.unsubscribe();
+      subscriber.quit();
+    }
+    console.log(message);
+  });
