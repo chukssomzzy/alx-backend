@@ -7,7 +7,7 @@ client
   .on('connect', () => console.log('Redis client connected to the server'));
 
 function setNewSchool(schoolName, value) {
-  client.SET(schoolName, value, print);
+  client.hset(schoolName, value, print);
 }
 
 function displaySchoolValue(schoolName) {
